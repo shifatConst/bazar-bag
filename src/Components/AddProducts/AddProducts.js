@@ -1,18 +1,31 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import './AddProducts.css'
 
 const AddProducts = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const [imageURL, setImageURL] = useState(null);
-    const[products, setProducts] = useState([]);
-    // const {name, wight, price} = products;
+    const [products, setProducts] = useState([]);
+    const [addProduct, setAddProduct] = useState(false);
+    const [manageProduct, setManageProduct] = useState(false);
 
     useEffect(() => {
         fetch('https://dry-sea-66742.herokuapp.com/products')
-        .then(res => res.json())
-        .then(data => setProducts(data));
-    },[])
+            .then(res => res.json())
+            .then(data => setProducts(data));
+    }, [])
+
+    const handleAddProduct = () => {
+        addProduct ? setAddProduct(false) : setAddProduct(true);
+        setManageProduct(false);
+    }
+
+
+    const handleManageProduct = () => {
+        manageProduct ? setManageProduct(false) : setManageProduct(true);
+        setAddProduct(false);
+    }
 
     const onSubmit = data => {
         const productData = {
@@ -30,7 +43,7 @@ const AddProducts = () => {
             },
             body: JSON.stringify(productData)
         })
-        .then(res => console.log('server side response', res))
+            .then(res => alert('Product Uploaded'))
     };
 
     const handleImageUpload = event => {
@@ -52,30 +65,52 @@ const AddProducts = () => {
         fetch(`https://dry-sea-66742.herokuapp.com/deleteProduct/${id}`, {
             method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(result => {
-            console.log('delete successfully');
-        })
-        // console.log('clicked', id);
+            .then(res => res.json())
+            .then(result => {
+                // console.log('delete successfully');
+                alert('Product delete successfully ');
+            })
     }
 
     return (
-        <div>
-            <h1>Add your product</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input name="name" defaultValue="test" placeholder="name" ref={register} />
-                <br />
-                <input name="wight" placeholder="wight" ref={register({ required: true })} />
-                <br />
-                <input name="price" placeholder="price" ref={register({ required: true })} />
-                <br />
-                <input name="price" type="file" onChange={handleImageUpload} />
-                <br />
-                <input type="submit" />
-            </form>
+        <div className="row mt-5">
+            <div className="col-sm-4 border side-bar py-5">
+                <div className="d-flex flex-column text-center">
+                    <h5 className="side-bar-menu"><a onClick={handleAddProduct}>Add Product</a></h5>
+                    <h5 className="side-bar-menu"><a onClick={handleManageProduct}>Manage Product</a></h5>
+                </div>
+            </div>
 
             {
-                products.map(pd => <li>Name: {pd.name}, Wight: {pd.wight}, Price: {pd.price} <button onClick={() => handleDelete(pd._id)}>Delete</button></li>)
+                addProduct && (
+                    <div className="col-sm-8">
+                        <div className="text-center m-3">
+                            <form className="border p-4 form-style" onSubmit={handleSubmit(onSubmit)}>
+                                <input className="m-1" name="name" placeholder="product name" ref={register} />
+                                <br />
+                                <input className="m-1" name="wight" placeholder="wight" ref={register({ required: true })} />
+                                <br />
+                                <input className="m-1" name="price" placeholder="price" ref={register({ required: true })} />
+                                <br />
+                                <input className="m-1" name="price" type="file" onChange={handleImageUpload} />
+                                <br />
+                                <input className="btn btn-primary" type="submit" />
+                            </form>
+                        </div>
+                    </div>
+                )
+            }
+
+            {
+                manageProduct && (
+                    <div className="col-sm-8">
+                        <div className="d-flex flex-column text-center bd-highlight mb-3 p-5">
+                            {
+                                products.map(pd => <div className="p-4 bd-highlight mx-5 my-2 border allProduct-style">Name: <b>{pd.name}</b>, Wight: <b>{pd.wight}</b>, Price: <b>{pd.price}</b> <button className="btn btn-primary" onClick={() => handleDelete(pd._id)}>Delete</button></div>)
+                            }
+                        </div>
+                    </div>
+                )
             }
 
         </div>

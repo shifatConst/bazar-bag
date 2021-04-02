@@ -24,19 +24,19 @@ function App() {
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+          <nav className="sticky-top nav-style">
+            <ul className="nav nav-tabs justify-content-center">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/orders">Orders</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="orders">Orders</Link>
               </li>
-              <li>
-                <Link to="/admin">Admin</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/admin">Admin</Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
+              <li className="nav-item">
+                {loggedInUser.email ? <Link className="nav-link" to="/login">Sign out</Link> : <Link className="nav-link" to="/login">Login</Link>}
               </li>
             </ul>
           </nav>
@@ -51,7 +51,6 @@ function App() {
             <PrivateRoute path="/booking/:id">
               <Booking></Booking>
             </PrivateRoute>
-
             <PrivateRoute path="/orders">
               <Order></Order>
             </PrivateRoute>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import './AllProducts.css';
 
 const AllProducts = (props) => {
     const history = useHistory();
@@ -9,8 +10,8 @@ const AllProducts = (props) => {
         history.push(`/booking/${id}`)
     }
     return (
-        <div className="col-sm-4 mt-3">
-            <div className="card" style={{width: '18rem'}}>
+        <div className="col-sm-4 mt-3 text-center">
+            <div className="card card-style" style={{width: '18rem'}}>
                 <img className="card-img-top" src={imageURL} alt="Card image cap" />
                     <div className="card-body">
                         <h4 className="card-text">{name} - {wight}</h4>
