@@ -1,9 +1,26 @@
 # Bazar Bag
 
-Bazar Bag is a simple E-commerce site built with React.js. In home page you would see some available products on the site. You must have to login with google if you want to use this site. After login you can access any page or route. 
-You can buy your desirable product form this site by clicking Buy Now and it will take you checkout page. Then press check out button to confirm the product then it will redirect you to your order page there you will see your all order product.
-Beside if you logged in you can post product as well which will show on the home page. And can delete the product. For all these you will find in admin page. 
+Bazar Bag is a simple E-commerce site built with React.js. 
 
-The Technologies I used here: React.js, ReactRouter, Bootstrap, Express.js, MongoDB etc.
+## Features & Implementation
+
+* Managed all the route with React router.
+* Implemented CRUD operation for backend with Express.js and MongoDB for database.
+* Built home page and displayed all the products from database.
+* Implemented login system for users with Firebase Auth.
+* Built Admin page for admin.
+* An admin can add more products to the database and delete a product as well.
+* Users can see all the products that have been ordered by himself.
+
+## Technologies
+
+- Front-End:
+  - React.js, React-Router, React-Form, Firebase Authentication, Bootstrap.
+
+- Back-End:
+  - MongoDB, Express, ImageBB for image hosting.
+ 
+- Hosting: Firebase, Heroku
+
 
 [Live Link](https://bazar-bag.web.app/)
