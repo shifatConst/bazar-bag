@@ -15,12 +15,20 @@ Bazar Bag is a simple E-commerce site built with React.js.
 ## Technologies
 
 - Front-End:
-  - React.js, React-Router, React-Form, Firebase Authentication, Bootstrap.
+  - React.js
+  - React-Router
+  - React-Form
+  - Firebase Authentication
+  - Bootstrap.
 
 - Back-End:
-  - MongoDB, Express, ImageBB for image hosting.
+  - MongoDB
+  - Express
+  - ImageBB for image hosting.
  
-- Hosting: Firebase, Heroku
+- Hosting: 
+  - Firebase
+  - Heroku
 
 
 [Live Link](https://bazar-bag.web.app/)
